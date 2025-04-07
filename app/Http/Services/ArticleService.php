@@ -2,7 +2,6 @@
 
 namespace App\Http\Services;
 
-use App\Models\Blog\Article;
 use App\Http\Repositories\ArticleRepository;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
