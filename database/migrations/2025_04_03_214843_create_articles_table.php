@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('fullText');
             $table->timestamp('createdAt');
             $table->softDeletes();
-
-            $table->foreignId('author')->on('users')->nullable();
+            $table->unsignedBigInteger('author')->nullable();
+            $table->foreign('author')->references('id')->on('users');
         });
     }
 

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Blog\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/', [ArticleController::class, 'index'])->name('');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+$groupData = [
+    
+];
+Route::group($groupData, function() {
+    
+    $methods = ['index', 'store', 'show', 'create'];
+    Route::resource('article', ArticleController::class)->only($methods)
+        ->names('article');
+});
+Route::get('/new', [ArticleController::class, 'create'])->name('new');

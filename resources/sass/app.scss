@@ -1,0 +1,24 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.pagination {
+    a {
+        text-decoration: none;
+    }
+
+    svg {
+        max-width: 20px;
+    }
+
+    .hidden {
+        p {
+            color: transparent;
+        }
+    }
+}
