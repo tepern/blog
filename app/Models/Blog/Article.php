@@ -40,19 +40,6 @@ class Article extends Model
 
     public $timestamps = false;
 
-    /*public function __construct(
-        ?string $id,
-        public string $title,
-        public ?int $author,
-        public string $brief,
-        public string $fullText,
-        ?Carbon $createdAt = null
-    )
-    {
-        $this->id = is_null($id) ? UUID::uuid1() : $id;
-        $this->createdAt = is_null($createdAt) ? Carbon::now() : $createdAt;
-    }*/
-
     protected $fillable = [
         'title',
         'brief',
