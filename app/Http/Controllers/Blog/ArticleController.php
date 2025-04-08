@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Blog;
 use App\Models\Blog\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
-use Illuminate\Http\Request;
 use App\Http\Services\ArticleService;
 
 class ArticleController extends Controller
@@ -58,29 +57,5 @@ class ArticleController extends Controller
     {
         $article = $this->service->getById($id);
         return view('blog.article.show', compact('article'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -45,7 +45,6 @@ class Article extends Model
         'brief',
         'fullText'
     ];
-
     
     /**
      * Автор статьи.
