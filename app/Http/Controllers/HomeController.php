@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View as View;
+use Illuminate\Contracts\View\Factory as Factory;
 
 class HomeController extends Controller
 {
@@ -19,9 +21,9 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Factory|View
      */
-    public function index()
+    public function index(): Factory|View
     {
         return view('home');
     }

@@ -3,13 +3,14 @@
 namespace App\Http\Repositories;
 
 use App\Models\Blog\Article;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class ArticleRepository
 {
-    public function list()
+    /**
+     * @return Paginator
+     */
+    public function list(): Paginator
     {
         $fields = [
             'id',
@@ -18,11 +19,14 @@ class ArticleRepository
             'brief'
         ];
         
-        return Article::select($fields)->withTrashed()->with(['user:id,name'])
+        /** @var \Illuminate\Database\Eloquent\Builder $query*/
+        $query = Article::withTrashed()->orderBy('createdAt', 'DESC');
+        return $query->with(['user:id,name'])->select($fields)
             ->paginate(5);
     }
 
     /**
+     * @param array<string, mixed> $model
      * @return Article
      */
     public function create(array $model): Article
@@ -38,8 +42,9 @@ class ArticleRepository
      * @param string $id
      * @return Article
      */
-    public function findById(string $id)
+    public function findById(string $id): Article
     {
+        /** @var Article $eloquentModel */
         $eloquentModel = Article::withTrashed()->find($id);
         return $eloquentModel;
     }

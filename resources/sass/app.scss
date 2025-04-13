@@ -25,4 +25,8 @@
             color: transparent;
         }
     }
+
+    span[aria-current='page'] {
+        margin-right: -4px;
+    }
 }

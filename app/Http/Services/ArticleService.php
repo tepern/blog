@@ -3,8 +3,11 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\ArticleRepository;
+use App\Models\Blog\Article;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Exception;
 
 class ArticleService
 {
@@ -13,25 +16,36 @@ class ArticleService
     ) {   
     }
     
-    public function getAllArticles()
+    /**
+     * @return Paginator
+     */
+    public function getAllArticles(): Paginator
     {
         $articles = $this->repository->list();
 
         return $articles;
     }
-
-    public function getById(string $id)
+    
+    /**
+     * @param string $id
+     * @return Article
+     */
+    public function getById(string $id): Article
     {
-        $article = $this->repository->findById($id);
-
-        if (empty($article)) {
+        try {
+            $article = $this->repository->findById($id);
+        } catch (Exception $e) {
            throw new NotFoundHttpException();
         }
 
         return $article;
     }
-
-    public function create(array $data) {
+    
+    /**
+     * @param array<string, int> $data
+     * @return Article
+     */
+    public function create(array $data): Article {
         if (empty($data['author'])) {
             $data['author'] = Auth::id();
         }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 /**
  * 
@@ -30,7 +31,6 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereFullText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
- * @mixin \Eloquent
  */
 class Article extends Model
 {
@@ -49,9 +49,9 @@ class Article extends Model
     /**
      * Автор статьи.
      * 
-     * @return \Illumimate\Database\Eloquent\Relations\BelongsTo\
+     * @return \Illuminate\Contracts\Database\Eloquent\Builder
      */
-    public function user()
+    public function user(): Builder
     {
         return $this->belongsTo(User::class, 'author');
     }
