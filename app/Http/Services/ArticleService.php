@@ -32,9 +32,8 @@ class ArticleService
      */
     public function getById(string $id): Article
     {
-        try {
-            $article = $this->repository->findById($id);
-        } catch (Exception $e) {
+        $article = $this->repository->findById($id);
+        if (!$article) {
            throw new NotFoundHttpException();
         }
 

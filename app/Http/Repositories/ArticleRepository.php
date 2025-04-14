@@ -40,9 +40,9 @@ class ArticleRepository
 
     /**
      * @param string $id
-     * @return Article
+     * @return ?Article
      */
-    public function findById(string $id): Article
+    public function findById(string $id): ?Article
     {
         /** @var Article $eloquentModel */
         $eloquentModel = Article::withTrashed()->find($id);
